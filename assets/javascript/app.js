@@ -68,4 +68,11 @@ $(document).ready(function () {
         }
     });
 
+    
+    $("#reset-button").on("click", function () {
+        database.ref('/players').child('1').remove();
+        database.ref('/players').child('2').remove();
+        location.reload();
+      });
+
 });
