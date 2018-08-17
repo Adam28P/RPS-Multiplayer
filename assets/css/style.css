@@ -1,3 +1,14 @@
+#header{
+    background-color: #EFEFEF;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center
+}
+
+h1, h2,h3, p{
+    color: #222;
+}
+
 #player-name-and-reset-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
