@@ -38,8 +38,8 @@ $(document).ready(function () {
                     wins: 0,
                 })
                 playerSlot = 1
-                $("#player-slot").html("You are player 1. Give your opponent this URL to join the game");
-                $("#name-join").html("");
+                $("#name-join").html("You are player 1. Give your opponent this URL to join the game: " + "<a href='https://adam28p.github.io/RPS-Multiplayer/'>https://adam28p.github.io/RPS-Multiplayer/</a>");
+                // $("#name-join").html("");
             }
         });
     });
