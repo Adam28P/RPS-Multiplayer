@@ -14,3 +14,15 @@
     float: left;
     width: 60%;
   }
+
+  #player-slot{
+    text-align: center;
+    margin-bottom: 30px
+  }
+
+  .box{
+    height: 300px;
+    border: 1px solid #e5e5e5;
+    padding-top: 25px;
+    text-align: center;
+  }
