@@ -9,7 +9,14 @@ $(document).ready(function () {
         storageBucket: "",
         messagingSenderId: "428674838353"
     };
-    
+
     firebase.initializeApp(config);
+
+    var database = firebase.database();
+
+    var playerSlot = 0
+
+    $('#wins-losses-1').css("display", "none");
+    $('#wins-losses-2').css("display", "none");
 
 });
