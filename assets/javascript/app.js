@@ -14,10 +14,11 @@ $(document).ready(function () {
 
     var database = firebase.database();
 
-    var playerSlot = 0
+    var playerSlot = 0;
 
     $('#wins-losses-1').css("display", "none");
     $('#wins-losses-2').css("display", "none");
+    $('#reset-button').css("display", "none");
 
     $("#join-button").on("click", function () {
         database.ref('/players').once('value', function (snapshot) {
@@ -30,6 +31,7 @@ $(document).ready(function () {
                 })
                 playerSlot = 2
                 $("#name-join").html("");
+                $('#reset-button').css("display", "block");
             } else {
                 var name = $("#name-input").val().trim();
                 database.ref('/players').child('1').set({
@@ -39,7 +41,6 @@ $(document).ready(function () {
                 })
                 playerSlot = 1
                 $("#name-join").html("You are player 1. Give your opponent this URL to join the game: " + "<a href='https://adam28p.github.io/RPS-Multiplayer/'>https://adam28p.github.io/RPS-Multiplayer/</a>");
-                // $("#name-join").html("");
             }
         });
     });

@@ -41,3 +41,7 @@ h1, h2,h3, p{
   .jumbotron{
       text-align:center;
   }
+
+  input#name-input{
+      padding:5px;
+  }
