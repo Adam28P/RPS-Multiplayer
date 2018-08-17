@@ -44,4 +44,28 @@ $(document).ready(function () {
         });
     });
 
+
+    database.ref('/players').on('value', function (snapshot) {
+        if (snapshot.hasChild('1')) {
+            database.ref('/players').child('1').on('value', function (snap) {
+                $("wins-losses-1").css("display", "block");
+                $("player-1-name").html(snap.val().name);
+                $("player-1-wins").html(snap.val().wins);
+                $("player-1-losses").html(snap.val().losses);
+            });
+        }
+    });
+
+
+    database.ref('/players').on('value', function (snapshot) {
+        if (snapshot.hasChild('2')) {
+            database.ref('/players').child('2').on('value', function (snap) {
+                $("wins-losses-2").css("display", "block");
+                $("player-2-name").html(snap.val().name);
+                $("player-2-wins").html(snap.val().wins);
+                $("player-2-losses").html(snap.val().losses);
+            });
+        }
+    });
+
 });
