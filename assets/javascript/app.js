@@ -21,28 +21,30 @@ $(document).ready(function () {
     $('#reset-button').css("display", "none");
 
     $("#join-button").on("click", function () {
-        database.ref('/players').once('value', function (snapshot) {
-            if (snapshot.hasChild('1')) {
-                var name = $("#name-input").val().trim();
-                database.ref('/players').child('2').set({
-                    name: name,
-                    losses: 0,
-                    wins: 0,
-                })
-                playerSlot = 2
-                $("#name-join").html("");
-                $('#reset-button').css("display", "block");
-            } else {
-                var name = $("#name-input").val().trim();
-                database.ref('/players').child('1').set({
-                    name: name,
-                    losses: 0,
-                    wins: 0,
-                })
-                playerSlot = 1
-                $("#name-join").html("You are player 1. Give your opponent this URL to join the game: " + "<a href='https://adam28p.github.io/RPS-Multiplayer/'>https://adam28p.github.io/RPS-Multiplayer/</a>");
-            }
-        });
+        if ($("#name-input").val().trim().length > 0) {
+            database.ref('/players').once('value', function (snapshot) {
+                if (snapshot.hasChild('1')) {
+                    var name = $("#name-input").val().trim();
+                    database.ref('/players').child('2').set({
+                        name: name,
+                        losses: 0,
+                        wins: 0,
+                    })
+                    playerSlot = 2
+                    $("#name-join").html("");
+                    $('#reset-button').css("display", "block");
+                } else {
+                    var name = $("#name-input").val().trim();
+                    database.ref('/players').child('1').set({
+                        name: name,
+                        losses: 0,
+                        wins: 0,
+                    })
+                    playerSlot = 1
+                    $("#name-join").html("You are player 1. Give your opponent this URL to join the game: " + "<a href='https://adam28p.github.io/RPS-Multiplayer/'>https://adam28p.github.io/RPS-Multiplayer/</a>");
+                }
+            });
+        }
     });
 
 
@@ -69,11 +71,11 @@ $(document).ready(function () {
         }
     });
 
-    
+
     $("#reset-button").on("click", function () {
         database.ref('/players').child('1').remove();
         database.ref('/players').child('2').remove();
         location.reload();
-      });
+    });
 
 });
