@@ -37,3 +37,7 @@ h1, h2,h3, p{
     padding-top: 25px;
     text-align: center;
   }
+
+  .jumbotron{
+      text-align:center;
+  }
