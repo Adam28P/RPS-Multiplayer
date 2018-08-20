@@ -26,7 +26,64 @@ $(document).ready(function () {
 
     // Set initial chat area value
 	chatArea = $("#chatArea");
-	chatArea.val(" -Chat messages will appear here-");
+    chatArea.val(" -Chat messages will appear here-");
+    
 
+    playerOneRef.on("value", function(snapshot){
+		if(snapshot.val().name!="undefined"){
+			$("#playerOneH1").text(snapshot.val().name);
+			$("#playerOneH3").text("WINS: " + snapshot.val().wins + " LOSES: " + snapshot.val().loses);
+		}
+		else{
+			$("#playerOneH1").empty();
+			$("#playerOneH2").empty();
+			$("#playerOneH3").empty();
+			$("#playerOneH4").empty();
+			$("#playerOneH5").empty();	
+		}
+    });
+    
+    playerTwoRef.on("value", function(snapshot){
+		if(snapshot.val().name!="undefined"){
+			$("#playerTwoH1").text(snapshot.val().name);
+			$("#playerTwoH3").text("WINS: " + snapshot.val().wins + " LOSES: " + snapshot.val().loses);
+		}
+		else{
+			$("#playerTwoH1").empty();
+			$("#playerTwoH2").empty();
+			$("#playerTwoH3").empty();
+			$("#playerTwoH4").empty();
+			$("#playerTwoH5").empty();
+		}
+    });
+    
+    $("#refresh").on("click", function(){
+		playerTwoRef.set({
+			choice: "undefined",
+			loses: 0,
+			wins: 0,
+			name: "undefined"
+		});
 
+		playerOneRef.set({
+			choice: "undefined",
+			loses: 0,
+			wins: 0,
+			name: "undefined"
+		});		
+
+		turnRef.set({
+			turn: 0
+		});
+
+		curWin.set({
+			currentWin: -1
+		});
+
+		totalPlayerRef.set({
+			totalPlayers: 0
+		});
+		sessionStorage.removeItem("playerName");
+		location.reload(true);
+	});
 });
