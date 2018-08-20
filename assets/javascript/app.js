@@ -126,6 +126,7 @@ $(document).ready(function () {
         }
     }
 
+    // Function to restart the game when "Refresh" button is clicked
     $("#refresh").on("click", function () {
         playerTwoRef.set({
             choice: "undefined",
@@ -157,7 +158,7 @@ $(document).ready(function () {
     });
 
 
-    // This event occurs when player starts game by clicking start button
+    // Function that happens when user enters their name and presses the "Start" button
     $("#startButton").on("click", function () {
 
         totalPlayerRef.once('value', function (snap) {
@@ -254,7 +255,7 @@ $(document).ready(function () {
         }
     });
 
-
+    // Function to pick rock, paper, or scissors
     $(document).on("click", ".choices", function () {
         if (sessionStorage.getItem("playerNumber") == 1) {
             $("#playerOneH2").removeClass("choices");
@@ -383,7 +384,7 @@ $(document).ready(function () {
                 $("#playerTwoH5").text(".");
             });
             intervalVar = setTimeout(startNewGame, 4000);
-            // new Audio('assets/sounds/gutsman.mp3').play();
+
         }
 
         if (snap.val().currentWin == 2) {
@@ -401,7 +402,7 @@ $(document).ready(function () {
                 $("#playerTwoH5").text(".");
             });
             intervalVar = setTimeout(startNewGame, 4000);
-            // new Audio('assets/sounds/gutsman.mp3').play();
+
         }
 
         if (snap.val().currentWin == 0) {
@@ -418,52 +419,52 @@ $(document).ready(function () {
                 $("#playerTwoH5").text(".");
             });
             intervalVar = setTimeout(startNewGame, 4000);
-            // new Audio('assets/sounds/gutsman.mp3').play();
+
         }
     });
 
     // This function is called to start new game
-	function startNewGame(){
-		clearTimeout(intervalVar);
-		curWin.set({
-			currentWin: -1
-		});
+    function startNewGame() {
+        clearTimeout(intervalVar);
+        curWin.set({
+            currentWin: -1
+        });
 
-		playerOneRef.update({
-			choice: "undefined"
-		});
+        playerOneRef.update({
+            choice: "undefined"
+        });
 
-		playerTwoRef.update({
-			choice: "undefined"
-		});		
+        playerTwoRef.update({
+            choice: "undefined"
+        });
 
-		turnRef.set({
-			turn: 1
-		});
+        turnRef.set({
+            turn: 1
+        });
     }
-    
-    // This event is occured when player send chat message
-	$("#sendMessage").on("click", function(e){
+
+    // Function when player hits the "Send" button
+    $("#sendMessage").on("click", function (e) {
         var textMsg = $("#textMessage");
         e.preventDefault();
         chatRef.set({
             chatmsg: sessionStorage.getItem("playerName") + " : " + textMsg.val().trim()
         });
         textMsg.val("");
-   });
+    });
 
-   //This event is occured after players send chat messages
-	chatRef.on("value", function(snapshot) {
-		var newLine = "\r\n";
-		var chatMsg = snapshot.val().chatmsg;
-		// new Audio('assets/sounds/stairs.mp3').play();
-		var chatText = chatArea.val();
-		chatArea.val(chatText + newLine + chatMsg);
-		chatArea.scrollTop(chatArea[0].scrollHeight);
-		chatRef.set({
-		 	chatmsg: " "
-		 });
-	});
+    // Function to show chat
+    chatRef.on("value", function (snapshot) {
+        var newLine = "\r\n";
+        var chatMsg = snapshot.val().chatmsg;
+        // new Audio('assets/sounds/stairs.mp3').play();
+        var chatText = chatArea.val();
+        chatArea.val(chatText + newLine + chatMsg);
+        chatArea.scrollTop(chatArea[0].scrollHeight);
+        chatRef.set({
+            chatmsg: " "
+        });
+    });
 
 
 });
