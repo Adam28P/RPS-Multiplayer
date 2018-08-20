@@ -154,5 +154,57 @@ $(document).ready(function () {
 		});
 		sessionStorage.removeItem("playerName");
 		location.reload(true);
-	});
+    });
+    
+
+    // This event occurs when player starts game by clicking start button
+	$("#startButton").on("click", function(){
+
+		totalPlayerRef.once('value', function(snap) {
+			let totalPlayersCount = snap.val().totalPlayers;
+   			if (totalPlayersCount!=2){
+		   		playerName = $("#playerName").val().trim();		
+		   		sessionStorage.setItem("playerName",playerName);
+		   		if($("#playerOneH1").text()==""){
+		   			$("#playerOneH1").text(playerName);
+		   			sessionStorage.setItem("playerNumber","1");
+		   			playerOneRef.set({
+						choice: "undefined",
+						loses: 0,
+						wins: 0,
+						name: playerName
+					});
+		   		}else{
+		   			$("#playerTwoH1").text(playerName);
+		   			sessionStorage.setItem("playerNumber","2");
+		   			playerTwoRef.set({
+						choice: "undefined",
+						loses: 0,
+						wins: 0,
+						name: playerName
+					});
+		   		}
+		   		$("#playerName").val("");
+		   		$("#startNewGame").hide();
+		   		$("#game-msg-1").html("<h1>Hi " + playerName + "! You are Player " + sessionStorage.getItem("playerNumber") + "!");
+		   		$("#sendMessage").attr("disabled",false);
+		   		$("#game-msg-2-h1").empty();
+		   		totalPlayersCount++;
+		   		totalPlayerRef.set({
+		   			totalPlayers: totalPlayersCount
+		   		});
+
+		   		if (totalPlayersCount==2){
+		   			turnRef.update({
+		   				turn: 1
+		   			});
+		   		}
+
+			}else{
+				$("#game-msg-2-h1").text("Sorry ! Game is already being played by 2 players. Please try later!!");
+		}	
+
+		});
+    });
+    
 });
