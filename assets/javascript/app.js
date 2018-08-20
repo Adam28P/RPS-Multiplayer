@@ -201,10 +201,57 @@ $(document).ready(function () {
 		   		}
 
 			}else{
-				$("#game-msg-2-h1").text("Sorry ! Game is already being played by 2 players. Please try later!!");
+				$("#game-msg-2-h1").text("Sorry! The game is already being played by 2 players. Please try again later!!");
 		}	
 
 		});
     });
+
+
+    turnRef.on("value" , function(snap){
+		if(snap.val().turn==1){
+			if(sessionStorage.getItem("playerNumber")==1){
+		   		$("#game-msg-2-h1").text("It's your turn");
+		   		$("#playerOneH2").text("Rock");
+		   		$("#playerOneH2").addClass("choices");
+		   		$("#playerOneH4").text("Paper");
+		   		$("#playerOneH4").addClass("choices");
+		   		$("#playerOneH5").text("Scissors");
+		   		$("#playerOneH5").addClass("choices");
+		   		$("#player-1").css("border", "2px solid yellow");
+		   		$("#player-2").css("border", "2px solid green");
+		   		$("#game-stat").empty();
+		   		$("#playerTwoH2").text("");
+		   		$("#playerTwoH4").text("");
+		   		$("#playerTwoH5").text("");
+		   	}else{
+		   		$("#game-msg-2-h1").text("Waiting for " + $("#playerOneH1").text() + " to choose.");
+		   		$("#player-1").css("border", "2px solid yellow");
+		   		$("#game-stat").empty();
+		   		$("#playerTwoH2").text("");
+		   		$("#playerTwoH4").text("");
+		   		$("#playerTwoH5").text("");
+		   		$("#playerOneH2").text("");
+		   		$("#playerOneH4").text("");
+		   		$("#playerOneH5").text("");
+		   	}
+		}
+		else if(snap.val().turn==2){
+			if(sessionStorage.getItem("playerNumber")==2){
+		   		$("#game-msg-2-h1").text("It's your turn");
+		   		$("#playerTwoH2").text("Rock");
+		   		$("#playerTwoH2").addClass("choices");
+		   		$("#playerTwoH4").text("Paper");
+		   		$("#playerTwoH4").addClass("choices");
+		   		$("#playerTwoH5").text("Scissors");
+		   		$("#playerTwoH5").addClass("choices");
+		   		$("#player-2").css("border", "2px solid yellow");
+		   		$("#player-1").css("border", "2px solid green");
+		   	}else{
+		   		$("#game-msg-2-h1").text("Waiting for " + $("#playerTwoH1").text() + " to choose.");
+		   		$("#player-2").css("border", "2px solid yellow");
+		   	}	
+		}
+	});
     
 });

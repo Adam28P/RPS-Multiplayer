@@ -46,7 +46,6 @@ body{
 }
 
 #player-2{
-	/* grid-area: player-2; */
 	border: 2px solid blue;
 	height: 200px;
 	text-align: center;
