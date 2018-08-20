@@ -20,62 +20,84 @@
 </head>
 
 <body>
-    <div class="container">
+
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-
                 <div class="jumbotron">
                     <h1>Rock, Paper, Scissors</h1>
                     <h4>The realtime, online, multiplayer edition!</h4>
                 </div>
             </div>
+        </div>
 
+        <div class="row">
             <div class="col-md-12">
-                <div id="player-name-and-reset-container">
-                    <div id="name-join">
-                        <input class="uk-input" placeholder="Enter your name here..." id="name-input" type="text">
-                        <button class="btn btn-primary" id="join-button" type="button" name="button">Join</button>
+                <div id="game-msg-1">
+                    <div id="startNewGame">
+                        <input type=text placeholder=" Enter Your Name..." id="playerName">
+                        <button id="startButton">Start</button>
                     </div>
-
-                    <div>
-                        <button class="btn btn-primary" id="reset-button" type="button" name="button">End Game</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div id="player-slot"></div>
-
-            </div>
-
-            <div class="col-md-4">
-                <div class="box">
-                    <h3 id="player-1-name">Waiting for Player 1</h3>
-                    <p id="wins-losses-1">Wins:
-                        <span id="player-1-wins"></span> Losses:
-                        <span id="player-1-losses"></span>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box">
-                    TBD
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box">
-                    <h3 id="player-2-name">Waiting for Player 2</h3>
-                    <p id="wins-losses-2">Wins:
-                        <span id="player-2-wins"></span> Losses:
-                        <span id="player-2-losses"></span>
-                    </p>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="game-msg-2">
+                    <h2 id="game-msg-2-h1">Please enter your name and hit START to play game.</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div id="player-1">
+                    <h1 id="playerOneH1"></h1>
+                    <h2 id="playerOneH2"></h2>
+                    <h2 id="playerOneH4"></h2>
+                    <h2 id="playerOneH5"></h2>
+                    <h3 id="playerOneH3"></h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="game-stat">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="player-2">
+                    <h1 id="playerTwoH1"></h1>
+                    <h2 id="playerTwoH2"></h2>
+                    <h2 id="playerTwoH4"></h2>
+                    <h2 id="playerTwoH5"></h2>
+                    <h3 id="playerTwoH3"></h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="chat-disp">
+                    <textarea id="chatArea" rows="8">
+                
+                    </textarea>
+
+                    <br />
+
+                    <form>
+                        <input type="text" id="textMessage" placeholder=" Type new message...">
+                        <input type="submit" id="sendMessage" value="Send" disabled>
+                    </form>
+                </div>
+            </div>
+          
+        </div>
     </div>
 
-    </div>
+
+    <br>
+    <button id="refresh">Stop Game</button>
+
 
     <!-- jQuery script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

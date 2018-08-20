@@ -1,47 +1,110 @@
-#header{
-    background-color: #EFEFEF;
-    margin-bottom: 20px;
-    padding: 20px;
-    text-align: center
+body{
+	background: black;
+	font-family: 'Joti One', cursive;
+	margin: 15px 10px;
+	text-align: center;
 }
 
-h1, h2,h3, p{
-    color: #222;
+#game-msg-1{
+	grid-area: game-msg-1;
+	text-align: center;
+	width: 100%;
 }
 
-#player-name-and-reset-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: 30px;
-  }
+#game-msg-1 h1{
+	color: yellow;
+	font-size: 25px;
+}
 
-  #reset-button{
-    float: right
-  }
+#startButton{
+	width: 80px;
+	font-family: inherit;
+	font-size: 18px;
+}
 
-  #name{
-    float: left;
-    width: 60%;
-  }
+#playerName{
+	width: 300px;
+	font-family: inherit;
+	font-size: 18px;
+}
 
-  #player-slot{
+#game-msg-2{
     text-align: center;
-    margin-bottom: 30px
-  }
+    margin-top:20px;
+}
 
-  .box{
-    height: 300px;
-    border: 1px solid #e5e5e5;
-    padding-top: 25px;
-    text-align: center;
-  }
+#game-msg-2-h1{
+	color: floralwhite;
+	font-size: 20px;
+}
 
-  .jumbotron{
-      text-align:center;
-  }
+#player-1{
+	border: 2px solid blue;
+	height: 200px;
+	text-align: center;
+	position: relative;
+}
 
-  input#name-input{
-      padding:5px;
-  }
+#player-2{
+	/* grid-area: player-2; */
+	border: 2px solid blue;
+	height: 200px;
+	text-align: center;
+	position: relative;
+}
+
+#playerOneH3, #playerTwoH3{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin:  0px auto;
+	font-family: inherit;
+	font-size: 15px;
+	color: yellow;
+}
+
+#playerOneH2, #playerOneH4, #playerOneH5, #playerTwoH2, #playerTwoH4, #playerTwoH5{
+	color: floralwhite;
+	font-size: 25px;
+	margin: 20px auto;
+}
+
+.choices{
+	cursor: pointer;
+}
+
+#playerOneH1, #playerTwoH1{
+	color: orange;
+	font-size: 22px;
+}
+
+#game-stat{
+	border: 2px solid blue;
+	font-family: inherit;
+	font-size: 50px;
+	color: yellow;
+	text-align: center;
+    padding-top: 60px;
+    height:200px;
+}
+
+#chat-disp{
+	text-align:  center;
+}
+
+#chatArea{
+    width: 100%;
+    margin-top:40px;
+}
+
+#textMessage{
+    width: 100%;
+    float:left;
+}
+
+#sendMessage{
+    width: 65px;
+    float:left;
+    margin-top:10px;
+}
