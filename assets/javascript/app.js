@@ -422,5 +422,25 @@ $(document).ready(function () {
         }
     });
 
+    // This function is called to start new game
+	function startNewGame(){
+		clearTimeout(intervalVar);
+		curWin.set({
+			currentWin: -1
+		});
+
+		playerOneRef.update({
+			choice: "undefined"
+		});
+
+		playerTwoRef.update({
+			choice: "undefined"
+		});		
+
+		turnRef.set({
+			turn: 1
+		});
+	}
+
 
 });
