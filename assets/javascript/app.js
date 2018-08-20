@@ -14,68 +14,19 @@ $(document).ready(function () {
 
     var database = firebase.database();
 
-    var playerSlot = 0;
+    // Firebase reference
+    rootRef = database.ref();
+	chatRef = rootRef.child("/chat")
+	playerRef = rootRef.child("/players");
+	playerOneRef = playerRef.child("/1");
+	playerTwoRef = playerRef.child("/2");
+	totalPlayerRef = rootRef.child("/totalPlayers");
+	turnRef = rootRef.child("/turn");
+	curWin = rootRef.child("/currentWin");
 
-    $('#wins-losses-1').css("display", "none");
-    $('#wins-losses-2').css("display", "none");
-    $('#reset-button').css("display", "none");
+    // Set initial chat area value
+	chatArea = $("#chatArea");
+	chatArea.val(" -Chat messages will appear here-");
 
-    $("#join-button").on("click", function () {
-        if ($("#name-input").val().trim().length > 0) {
-            database.ref('/players').once('value', function (snapshot) {
-                if (snapshot.hasChild('1')) {
-                    var name = $("#name-input").val().trim();
-                    database.ref('/players').child('2').set({
-                        name: name,
-                        losses: 0,
-                        wins: 0,
-                    })
-                    playerSlot = 2
-                    $("#name-join").html("");
-                    $('#reset-button').css("display", "block");
-                } else {
-                    var name = $("#name-input").val().trim();
-                    database.ref('/players').child('1').set({
-                        name: name,
-                        losses: 0,
-                        wins: 0,
-                    })
-                    playerSlot = 1
-                    $("#name-join").html("You are player 1. Give your opponent this URL to join the game: " + "<a href='https://adam28p.github.io/RPS-Multiplayer/'>https://adam28p.github.io/RPS-Multiplayer/</a>");
-                }
-            });
-        }
-    });
-
-
-    database.ref('/players').on('value', function (snapshot) {
-        if (snapshot.hasChild('1')) {
-            database.ref('/players').child('1').on('value', function (snap) {
-                $("#wins-losses-1").css("display", "block");
-                $("#player-1-name").html(snap.val().name);
-                $("#player-1-wins").html(snap.val().wins);
-                $("#player-1-losses").html(snap.val().losses);
-            });
-        }
-    });
-
-
-    database.ref('/players').on('value', function (snapshot) {
-        if (snapshot.hasChild('2')) {
-            database.ref('/players').child('2').on('value', function (snap) {
-                $("#wins-losses-2").css("display", "block");
-                $("#player-2-name").html(snap.val().name);
-                $("#player-2-wins").html(snap.val().wins);
-                $("#player-2-losses").html(snap.val().losses);
-            });
-        }
-    });
-
-
-    $("#reset-button").on("click", function () {
-        database.ref('/players').child('1').remove();
-        database.ref('/players').child('2').remove();
-        location.reload();
-    });
 
 });
