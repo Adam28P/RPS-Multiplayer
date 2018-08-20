@@ -6,20 +6,22 @@ body{
 }
 
 #game-msg-1{
-	grid-area: game-msg-1;
 	text-align: center;
-	width: 100%;
+    width: 100%;
+    margin-bottom:20px;
 }
 
 #game-msg-1 h1{
 	color: yellow;
-	font-size: 25px;
+    font-size: 25px;
+    
 }
 
 #startButton{
 	width: 80px;
 	font-family: inherit;
-	font-size: 18px;
+    font-size: 18px;
+    margin-top:20px;
 }
 
 #playerName{
@@ -31,25 +33,29 @@ body{
 #game-msg-2{
     text-align: center;
     margin-top:20px;
+    margin-bottom:20px;
 }
 
 #game-msg-2-h1{
 	color: floralwhite;
-	font-size: 20px;
+    font-size: 20px;
+    margin-bottom:20px;
 }
 
 #player-1{
 	border: 2px solid blue;
 	height: 200px;
 	text-align: center;
-	position: relative;
+    position: relative;
+    margin-bottom:20px;
 }
 
 #player-2{
 	border: 2px solid blue;
 	height: 200px;
 	text-align: center;
-	position: relative;
+    position: relative;
+    margin-bottom:20px;
 }
 
 #playerOneH3, #playerTwoH3{
@@ -86,6 +92,7 @@ body{
 	text-align: center;
     padding-top: 60px;
     height:200px;
+    margin-bottom:20px;
 }
 
 #chat-disp{
