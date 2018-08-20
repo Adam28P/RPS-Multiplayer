@@ -56,6 +56,75 @@ $(document).ready(function () {
 			$("#playerTwoH5").empty();
 		}
     });
+
+    // Update database when player refreshes the page
+	if(sessionStorage.getItem("playerNumber") == "1"){
+		$("#game-stat").empty();
+		playerOneRef.set({
+			choice: "undefined",
+			loses: 0,
+			wins: 0,
+			name: "undefined"
+		});
+
+		turnRef.set({
+			turn: 0
+		});
+
+		curWin.set({
+			currentWin: -1
+		});
+
+
+		playerTwoRef.once("value", function(snap){
+			if(snap.val().name!="undefined"){
+				$("#playerTwoH1").text(snap.val().name);
+				$("#playerTwoH3").text("WINS: " + snap.val().wins + " LOSES: " + snap.val().loses);
+			}
+		});
+		
+		
+		if(sessionStorage.getItem("playerName")!==null){
+			sessionStorage.removeItem("playerName");
+			var totalplayerscount = totalPlayerRef.child('totalPlayers');
+
+			totalplayerscount.transaction(function(currentplayer) {
+   				return currentplayer - 1;
+			});
+		}
+		
+	} else if(sessionStorage.getItem("playerNumber") == "2"){
+		$("#game-stat").empty();
+		playerTwoRef.set({
+			choice: "undefined",
+			loses: 0,
+			wins: 0,
+			name: "undefined"
+		});
+
+		turnRef.set({
+			turn: 0
+		});
+
+		curWin.set({
+			currentWin: -1
+		});
+
+		playerOneRef.once("value", function(snap){
+			if(snap.val().name!="undefined"){
+				$("#playerOneH1").text(snap.val().name);
+				$("#playerOneH3").text("WINS: " + snap.val().wins + " LOSES: " + snap.val().loses);
+			}
+		});
+
+		if(sessionStorage.getItem("playerName")!==null){
+			sessionStorage.removeItem("playerName");
+			var totalplayerscount = totalPlayerRef.child('totalPlayers');
+			totalplayerscount.transaction(function(currentplayer) {
+   				return currentplayer - 1;
+			});
+		}
+	}
     
     $("#refresh").on("click", function(){
 		playerTwoRef.set({
