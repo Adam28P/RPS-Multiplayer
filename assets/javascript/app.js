@@ -366,6 +366,61 @@ $(document).ready(function () {
         }
     });
 
-    
+
+    curWin.on("value", function (snap) {
+        if (snap.val().currentWin == 1) {
+            var playerOneName = $("#playerOneH1").text();
+            $("#game-stat").text(playerOneName + " Wins!");
+            $("#game-msg-2-h1").empty();
+            playerOneRef.once("value", function (snap) {
+                $("#playerOneH4").text(snap.val().choice);
+                $("#playerOneH2").text(".");
+                $("#playerOneH5").text(".");
+            });
+            playerTwoRef.once("value", function (snap) {
+                $("#playerTwoH4").text(snap.val().choice);
+                $("#playerTwoH2").text(".");
+                $("#playerTwoH5").text(".");
+            });
+            intervalVar = setTimeout(startNewGame, 4000);
+            // new Audio('assets/sounds/gutsman.mp3').play();
+        }
+
+        if (snap.val().currentWin == 2) {
+            var playerTwoName = $("#playerTwoH1").text();
+            $("#game-stat").text(playerTwoName + " Wins!");
+            $("#game-msg-2-h1").empty();
+            playerOneRef.once("value", function (snap) {
+                $("#playerOneH4").text(snap.val().choice);
+                $("#playerOneH2").text(".");
+                $("#playerOneH5").text(".");
+            });
+            playerTwoRef.once("value", function (snap) {
+                $("#playerTwoH4").text(snap.val().choice);
+                $("#playerTwoH2").text(".");
+                $("#playerTwoH5").text(".");
+            });
+            intervalVar = setTimeout(startNewGame, 4000);
+            // new Audio('assets/sounds/gutsman.mp3').play();
+        }
+
+        if (snap.val().currentWin == 0) {
+            $("#game-stat").text("Game Tied!");
+            $("#game-msg-2-h1").empty();
+            playerOneRef.once("value", function (snap) {
+                $("#playerOneH4").text(snap.val().choice);
+                $("#playerOneH2").text(".");
+                $("#playerOneH5").text(".");
+            });
+            playerTwoRef.once("value", function (snap) {
+                $("#playerTwoH4").text(snap.val().choice);
+                $("#playerTwoH2").text(".");
+                $("#playerTwoH5").text(".");
+            });
+            intervalVar = setTimeout(startNewGame, 4000);
+            // new Audio('assets/sounds/gutsman.mp3').play();
+        }
+    });
+
 
 });
