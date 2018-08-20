@@ -1,8 +1,12 @@
 body{
-	background: black;
+	background:black;
 	font-family: 'Joti One', cursive;
 	margin: 15px 10px;
 	text-align: center;
+}
+
+.jumbotron{
+    background: white;
 }
 
 #game-msg-1{
