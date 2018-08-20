@@ -201,7 +201,7 @@ $(document).ready(function () {
                 }
 
             } else {
-                $("#game-msg-2-h1").text("Sorry! The game is already being played by 2 players. Please try again later!!");
+                $("#game-msg-2-h1").text("Sorry! The game is already being played by 2 players. Please try again later!");
             }
 
         });
@@ -440,7 +440,30 @@ $(document).ready(function () {
 		turnRef.set({
 			turn: 1
 		});
-	}
+    }
+    
+    // This event is occured when player send chat message
+	$("#sendMessage").on("click", function(e){
+        var textMsg = $("#textMessage");
+        e.preventDefault();
+        chatRef.set({
+            chatmsg: sessionStorage.getItem("playerName") + " : " + textMsg.val().trim()
+        });
+        textMsg.val("");
+   });
+
+   //This event is occured after players send chat messages
+	chatRef.on("value", function(snapshot) {
+		var newLine = "\r\n";
+		var chatMsg = snapshot.val().chatmsg;
+		// new Audio('assets/sounds/stairs.mp3').play();
+		var chatText = chatArea.val();
+		chatArea.val(chatText + newLine + chatMsg);
+		chatArea.scrollTop(chatArea[0].scrollHeight);
+		chatRef.set({
+		 	chatmsg: " "
+		 });
+	});
 
 
 });
